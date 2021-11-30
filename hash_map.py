@@ -5,11 +5,10 @@ import math
 
 class HashTable():
 
+    size = 127
 
-    def __init__(self, size):
-        self.size = size
-        self.innerList = [None for x in range(size)]
-
+    def __init__(self):
+        self.innerList = [None for x in range(self.size)]
 
     def insert(self,key):
 
@@ -38,7 +37,7 @@ class HashTable():
 class TestClass(unittest.TestCase):
     """insert tests here"""
     def test_insert_and_search_key_of_table_of_size_127(self):
-        testTable = HashTable(127)
+        testTable = HashTable()
         testTable.insert(31313)
         result = testTable.search(31313)
         self.assertEqual(63,result)
