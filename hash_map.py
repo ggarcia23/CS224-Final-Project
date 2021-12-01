@@ -42,6 +42,25 @@ class TestClass(unittest.TestCase):
         result = testTable.search(31313)
         self.assertEqual(63,result)
 
+    def test_char_in_hashTable(self):
+        testTable = HashTable()
+        testTable.insert(ord('C'))
+        result = testTable.search(ord('C'))
+        self.assertEqual(51,result)
+
+    def test_insert_and_search_with_multiple_values_inserted(self):
+        testTable = HashTable()
+        testTable.insert(48923432)
+        testTable.insert(2324353543)
+        testTable.insert(1233434556547674)
+        testTable.insert(23546566575476)
+        testTable.insert(65346456356436543636)
+        testTable.insert(31313)
+        result = testTable.search(31313)
+        self.assertEqual(63, result)
+
+
+
 
 def main():
 
