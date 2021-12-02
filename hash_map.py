@@ -27,7 +27,7 @@ class HashTable():
         """
         for index in range(self.size):
             hashedPosition = self.hashKey(key, index)
-            if not self.innerList[hashedPosition]:
+            if not self.innerList[hashedPosition] or self.innerList[hashedPosition] == "DELETED":
                 self.innerList[hashedPosition] = key
                 return None
 
@@ -51,7 +51,9 @@ class HashTable():
         """ will search for key, and delete it from the hash table, freeing its position from the hash table
 
         """
-        pass
+        keyToBeDeleted = self.search(key)
+        self.innerList[keyToBeDeleted] = "DELETED"
+
 
     def hashKey(self, key, index):
         """ finds the hashing position of the desired key by calling an inner function and modding it by the size of
@@ -118,6 +120,13 @@ class TestClass(unittest.TestCase):
         result = testTable.search(31313)
         self.assertEqual(63, result)
 
+    def test_search_and_delete(self):
+        testTable = HashTable()
+        testTable.insert(31313)
+        testTable.delete(31313)
+        testTable.insert(31313)
+        result = testTable.search(31313)
+        self.assertEqual(63, result)
 
 
 
