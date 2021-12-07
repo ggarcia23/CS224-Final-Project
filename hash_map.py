@@ -1,5 +1,6 @@
-""" A hash map that handles collisions with open addressing
-    moduleauthor:: Wendall Roberts and Gerardo Garcia
+""" A hash map implementation that hashes keys into their proper indexes, dealing with
+    collisions through open-addressing
+    module author:: Wendall Roberts and Gerardo Garcia
 """
 
 import unittest
@@ -8,19 +9,19 @@ import math
 
 class HashTable:
     """
-    size is the size of the hash table, being 127
+    size is a variable storing the length of the hash table, being 127
     """
     size = 127
 
     def __init__(self):
         """
-        :
+        Initializes a list of with a size of 127, indexes filled with "None"
         """
         self.innerList = [None for _ in range(self.size)]
 
     def insert(self, key):
-        """ Inserts a key given by the parameter and hashes it into in proper
-        hashed position in the hash table of size 127
+        """ Takes the key given by parameter, and hashes the key
+            into its proper slot in the hash map
 
         :param key: element containing the key to be hashed
         :type key: int
@@ -33,8 +34,8 @@ class HashTable:
                 return None
 
     def search(self, key):
-        """ Will search for the specified key in the hash table returning they keys position if found, returning None
-            if key is not found in hash table
+        """ Searches for the specified key in the hash map, given by the parameter, and returns the key if found,
+        if not found it will return None
 
         :param key: int value of key to searched in hash table
         :type key: int
@@ -49,14 +50,14 @@ class HashTable:
                 return None
 
     def delete(self, key):
-        """ will search for key, and delete it from the hash table, freeing its position from the hash table
+        """ Searches for specified key, and deletes it from the hash map, freeing up its slot
 
         """
         key_to_be_deleted = self.search(key)
         self.innerList[key_to_be_deleted] = "DELETED"
 
     def hash_key(self, key, index):
-        """ finds the hashing position of the desired key by calling an inner function and modding it by the size of
+        """ Finds the hashing position of the desired key by calling an inner function and modding it by the size of
             the hash table, returning the hashed position of the key
 
         :param key: value of key to be hashed
