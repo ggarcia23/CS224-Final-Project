@@ -2,7 +2,6 @@
     collisions through open-addressing
     module author:: Wendall Roberts and Gerardo Garcia
 """
-
 import unittest
 import math
 
@@ -135,6 +134,13 @@ class TestClass(unittest.TestCase):
         test_table.delete(31313)
         result = test_table.search(31313)
         self.assertEqual(None, result)
+
+    def test_collision_at_key_seventy_nine(self):
+        test_table = HashTable()
+        test_table.insert(3894)
+        test_table.insert(90)
+        result = test_table.search(90)
+        self.assertEqual(80, result)
 
 
 def main():
