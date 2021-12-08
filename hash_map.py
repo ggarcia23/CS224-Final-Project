@@ -81,7 +81,6 @@ class HashTable:
 
 class TestClass(unittest.TestCase):
     """ A testing class - will run automatically whenever the script is called
-
     """
 
     def test_insert_and_search_key_of_table_of_size_127(self):
@@ -141,6 +140,34 @@ class TestClass(unittest.TestCase):
         test_table.insert(90)
         result = test_table.search(90)
         self.assertEqual(80, result)
+
+    def test_collisions_at_key_38(self):
+        test_table = HashTable()
+        test_table.insert(8301)
+        test_table.insert(2612)
+        result = test_table.search(2612)
+        self.assertEqual(39, result)
+
+    def test_multiple_collisions_at_key_37(self):
+        test_table = HashTable()
+        test_table.insert(4408)
+        test_table.insert(3277)
+        test_table.insert(8445)
+        result = test_table.search(8445)
+        self.assertEqual(39, result)
+
+    def test_multiple_collisions_at_key_37_and_38(self):
+        test_table = HashTable()
+        test_table.insert(4408)
+        test_table.insert(8301)
+        test_table.insert(3277)
+        result = test_table.search(3277)
+        self.assertEqual(39, result)
+
+    def test_when_empty(self):
+        test_table = HashTable()
+        result = test_table.search(12)
+        self.assertEqual(None, result)
 
 
 def main():
