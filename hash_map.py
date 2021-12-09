@@ -7,14 +7,12 @@ import math
 
 
 class HashTable:
-    """
-    size is a variable storing the length of the hash table, being 127
+    """ Size is a int variable that stores the length of the hash table, being 127
     """
     size = 127
 
     def __init__(self):
-        """
-        Initializes a list of with a size of 127, indexes filled with "None"
+        """ Initializes a hash table (dictionary) of size 127
         """
         self.innerDictionary = {x: None for x in range(self.size)}
 
@@ -22,9 +20,10 @@ class HashTable:
         """ Takes the key given by parameter, and hashes the key
             into its proper slot in the hash map
 
-        :param key: element containing the key to be hashed
+        :param key: int value that stores the key to be inserted into the hash table
         :type key: int
         :return: None
+        :rtype: NoneType
         """
         for index in range(self.size):
             hashed_position = self.hash_key(key, index)
@@ -33,12 +32,12 @@ class HashTable:
                 return None
 
     def search(self, key):
-        """ Searches for the specified key in the hash map, given by the parameter, and returns the key if found,
-        if not found it will return None
+        """ Searches for the specified key given by the parameter, and returns the key if found in the hash table, if
+        the key is not found, then it will return 'None'
 
-        :param key: int value of key to searched in hash table
+        :param key: int value of the specified key that's to be searched in the hash table
         :type key: int
-        :return: the hashed position of the searched key
+        :return: the key found in the hash table
         :rtype: int
         """
 
@@ -48,12 +47,15 @@ class HashTable:
         return None
 
     def delete(self, key):
-        """ Searches for specified key, and deletes it from the hash map, freeing up its slot
+        """ Searches for the specified key in the hash table, freeing up its position in the hash table by
+        assigning it the value of 'DELETED', allowing its position to be hashed for future keys
 
+        :param key: integer value that stores the key to be searched and deleted
+        :type key: int
         """
         def search_for_key():
-            """ Searches for the specified key in the hash map, given by the parameter, and returns the key if found,
-        if not found it will return None
+            """ Searches for the specified key in the hash table, given by the parameter, and returns the keys hashed
+            position if found. If the key is not found, then the it'll return 'None'
 
         :return: the hashed position of the searched key
         :rtype: int
@@ -69,19 +71,20 @@ class HashTable:
         self.innerDictionary[key_to_be_deleted] = "DELETED"
 
     def hash_key(self, key, index):
-        """ Finds the hashing position of the desired key by calling an inner function and modding it by the size of
-            the hash table, returning the hashed position of the key
+        """ Finds the hashed position of the specified key given by the parameter by calling the inner 'auxiliary_hash'
+        function and adding the parameter given index to mod by the hash table size to find the keys hashed position
 
         :param key: value of key to be hashed
-        :param index: index of the table
+        :param index: current index of the hash table being used to hash the key into
         :type key: int
         :type index: int
-        :return: the hashed position of the key
+        :return: the hashed position of the key in the hash table
         :rtype: int
         """
 
         def auxiliary_hash():
-            """
+            """ Inner hash function that handles collisions using multiplication, returning a hashing number that's to
+            be combined with the index to help find the hashing position of the key in the hash table
 
             :return: the floor of the result given by the hashing number
             :rtype: int
