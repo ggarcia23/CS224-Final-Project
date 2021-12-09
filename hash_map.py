@@ -1,4 +1,4 @@
-""" A hash map implementation that hashes keys into their proper indexes, dealing with
+""" A hash table implementation that hashes keys into their proper indexes, dealing with
     collisions through open-addressing
     module author:: Wendall Roberts and Gerardo Garcia
 """
@@ -196,6 +196,27 @@ class TestClass(unittest.TestCase):
         test_table = HashTable()
         result = test_table.search(12)
         self.assertEqual(None, result)
+
+    def test_collision_and_deletion(self):
+        test_table = HashTable()
+        test_table.insert(4408)
+        test_table.insert(3277)
+        test_table.delete(3277)
+        test_table.delete(4408)
+        test_table.insert(8445)
+        result = test_table.search(37)
+        self.assertEqual(8445, result)
+
+    def test_multiple_collisions_deletions_and_inserts(self):
+        test_table = HashTable()
+        test_table.insert(4408)
+        test_table.insert(3277)
+        test_table.insert(8445)
+        test_table.delete(3277)
+        test_table.insert(2612)
+        test_table.delete(4408)
+        result = test_table.search(38)
+        self.assertEqual(2612, result)
 
 
 def main():
