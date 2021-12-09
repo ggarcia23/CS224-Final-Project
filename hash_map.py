@@ -22,14 +22,12 @@ class HashTable:
 
         :param key: int value that stores the key to be inserted into the hash table
         :type key: int
-        :return: None
-        :rtype: NoneType
         """
         for index in range(self.size):
             hashed_position = self.hash_key(key, index)
             if not self.innerDictionary[hashed_position] or self.innerDictionary[hashed_position] == "DELETED":
                 self.innerDictionary[hashed_position] = key
-                return None
+                break
 
     def search(self, key):
         """ Searches for the specified key given by the parameter, and returns the key if found in the hash table, if
