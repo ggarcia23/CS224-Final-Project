@@ -23,6 +23,9 @@ class HashTable:
         :param key: int value that stores the key to be inserted into the hash table
         :type key: int
         """
+        if type(key) is not int:
+            return "That is not a valid key"
+
         for index in range(self.size):
             hashed_position = self.hash_key(key, index)
             if not self.innerDictionary[hashed_position] or self.innerDictionary[hashed_position] == "DELETED":
@@ -39,6 +42,9 @@ class HashTable:
         :rtype: int
         """
 
+        if type(key) is not int:
+            return "That is not a valid key"
+
         hashed_key = self.innerDictionary[key]
         if type(hashed_key) is not str:
             return self.innerDictionary[key]
@@ -51,6 +57,10 @@ class HashTable:
         :param key: integer value that stores the key to be searched and deleted
         :type key: int
         """
+
+        if type(key) is not int:
+            return "That is not a valid key"
+
         def search_for_key():
             """ Searches for the specified key in the hash table, given by the parameter, and returns the keys hashed
             position if found. If the key is not found, then the it'll return 'None'
@@ -218,6 +228,17 @@ class TestClass(unittest.TestCase):
         result = test_table.search(38)
         self.assertEqual(2612, result)
 
+    def test_insert_not_int(self):
+        test_table = HashTable()
+        self.assertEqual( "That is not a valid key", test_table.insert("Test String"))
+
+    def test_search_not_int(self):
+        test_table = HashTable()
+        self.assertEqual( "That is not a valid key", test_table.search("Test String"))
+
+    def test_delete_not_int(self):
+        test_table = HashTable()
+        self.assertEqual( "That is not a valid key", test_table.delete("Test String"))
 
 def main():
     unittest.main()
