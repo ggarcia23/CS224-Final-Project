@@ -228,6 +228,21 @@ class TestClass(unittest.TestCase):
         result = test_table.search(38)
         self.assertEqual(2612, result)
 
+    def test_multiple_multiple_insertions_and_deletions_at_key_69_71_72(self):
+        test_table = HashTable()
+        test_table.insert(8248)
+        test_table.insert(8104)
+        test_table.insert(6130)
+        test_table.insert(1483)
+        test_table.delete(6130)
+        test_table.insert(7151)
+        test_table.delete(1483)
+        test_table.insert(8172)
+        result_71 = test_table.search(71)
+        result_72 = test_table.search(72)
+        self.assertEqual(7151, result_71)
+        self.assertEqual(8172, result_72)
+
     def test_insert_not_int(self):
         test_table = HashTable()
         self.assertEqual( "That is not a valid key", test_table.insert("Test String"))
