@@ -202,7 +202,7 @@ class TestClass(unittest.TestCase):
         result = test_table.search(38)
         self.assertEqual(3277, result)
 
-    def test_when_empty(self):
+    def test_when_hash_table_is_empty(self):
         test_table = HashTable()
         result = test_table.search(12)
         self.assertEqual(None, result)
@@ -242,6 +242,43 @@ class TestClass(unittest.TestCase):
         result_72 = test_table.search(72)
         self.assertEqual(7151, result_71)
         self.assertEqual(8172, result_72)
+
+    def test_insert_negative_key(self):
+        test_table = HashTable()
+        test_table.insert(-5340)
+        result = test_table.search(88)
+        self.assertEqual(-5340, result)
+
+    def test_collisions_for_negative_keys_at_index_11(self):
+        test_table = HashTable()
+        test_table.insert(-6904)
+        test_table.insert(-5629)
+        test_table.insert(-8213)
+        result = test_table.search(13)
+        self.assertEqual(-8213, result)
+
+    def test_multiple_collisions_at_index_37_with_negative_keys(self):
+        test_table = HashTable()
+        test_table.insert(-2590)
+        test_table.insert(4408)
+        test_table.insert(-7059)
+        result = test_table.search(39)
+        self.assertEqual(-7059, result)
+
+    def test_insert_and_delete_negative_keys_at_index_11(self):
+        test_table = HashTable()
+        test_table.insert(-6904)
+        test_table.insert(-5629)
+        test_table.delete(-6904)
+        test_table.insert(-8213)
+        result = test_table.search(11)
+        self.assertEqual(-8213, result)
+
+    def test_insert_negative_number(self):
+        test_table = HashTable()
+        test_table.insert(-1)
+        result = test_table.search(48)
+        self.assertEqual(-1, result)
 
     def test_insert_not_int(self):
         test_table = HashTable()
